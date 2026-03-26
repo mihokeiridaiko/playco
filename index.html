@@ -487,14 +487,14 @@ body {
   <!-- Screen 2: まぜまぜ -->
   <div class="screen" id="mixScreen">
     <div class="mix-top">
-      <canvas id="selectedCharSmall" width="48" height="48"></canvas>
+      <div id="selectedCharSmall"></div>
       <div class="mix-title">🪄 まほうのツボ</div>
     </div>
     <div id="quizBanner">
       <div class="quiz-label">🎯 めざせ！</div>
       <div class="quiz-target-row">
         <div class="quiz-swatch" id="quizSwatch"></div>
-        <div class="quiz-target-name" id="quizTargetName" style="display:none"></div>
+        <div class="quiz-target-name" id="quizTargetName"></div>
       </div>
       <div class="quiz-hint" id="quizHint"></div>
     </div>
@@ -1857,7 +1857,7 @@ function showGame(id){
       }
     } else if(gameId==='alphabet'){
       pick(ALPHA_FLAT,10).forEach(item=>{
-        const distractors=pick(ALPHA_FLAT.filter(a=>a.w!==item.w),2);
+        const distractors=pick(ALPHA_FLAT.filter(a=>a.letter!==item.letter),2);
         questions.push({type:'letter',q:item.letter,label:'このもじからはじまるえはどれ？',
           ans:item.w,choices:shuffle([item,...distractors]).map(x=>({e:x.e,w:x.w}))});
       });
