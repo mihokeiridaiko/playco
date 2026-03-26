@@ -134,7 +134,7 @@ body {
   -webkit-tap-highlight-color:transparent; touch-action:manipulation;
 }
 #game-iromaze .char-card:active { transform:scale(.92); }
-#game-iromaze .char-card span { font-size:.85rem; font-weight:bold; color:#555; }
+#game-iromaze .char-card span { font-size:.8rem; font-weight:bold; color:#555; white-space:nowrap; }
 
 #game-iromaze #mixScreen { padding:16px 16px 32px; justify-content:space-between; }
 #game-iromaze .mix-top {
@@ -1464,7 +1464,7 @@ function showGame(id){
   function getColorName(r,g,b){
     const active=Object.keys(drops).filter(k=>drops[k]>0);
     if(active.length===1) return JP[active[0]];
-    if(active.length>=4 && total>=8) return 'まぜすぎ！？';
+    if(active.length>=4 && total>=4) return 'まぜすぎ！？';
     const [h,s,l]=rgbToHsl(r,g,b);
     if(s<.14){ if(l>.85)return 'しろ'; if(l<.18)return 'くろ'; return 'はいいろ'; }
     const li=l>.62;
@@ -2183,5 +2183,10 @@ function showGame(id){
 })();
 </script>
 
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./sw.js');
+}
+</script>
 </body>
 </html>
