@@ -1856,9 +1856,10 @@ function showGame(id){
         if(questions.length>=10)break;
       }
     } else if(gameId==='alphabet'){
-      pick(ALPHA_FLAT,10).forEach(item=>{
-        const distractors=pick(ALPHA_FLAT.filter(a=>a.letter!==item.letter),2);
-        questions.push({type:'letter',q:item.letter,label:'このもじからはじまるえはどれ？',
+      pick(Object.keys(ALPHA_MAP),10).forEach(letter=>{
+        const item={letter,...shuffle(ALPHA_MAP[letter])[0]};
+        const distractors=pick(ALPHA_FLAT.filter(a=>a.letter!==letter),2);
+        questions.push({type:'letter',q:letter,label:'このもじからはじまるえはどれ？',
           ans:item.w,choices:shuffle([item,...distractors]).map(x=>({e:x.e,w:x.w}))});
       });
     } else if(gameId==='eigocard'){
