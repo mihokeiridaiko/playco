@@ -1337,6 +1337,8 @@ function showGame(id){
 
   function calcScore(r,g,b){
     if(!currentQuiz) return null;
+    const active=Object.keys(drops).filter(k=>drops[k]>0);
+    if(active.length>=4 && total>=4) return {stars:'☆☆☆',msg:'まぜすぎ！',dist:999};
     const [tr,tg,tb]=recipeToRgb(currentQuiz.recipe);
     const dist=Math.sqrt((r-tr)**2+(g-tg)**2+(b-tb)**2);
     if(dist<=80)  return {stars:'★★★',msg:'ぴったり！',dist};
